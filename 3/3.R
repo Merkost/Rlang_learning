@@ -24,8 +24,8 @@ newdemo
 
 data()
 fdeaths
-
+trees
 write.table(pressure, "pressure.csv", row.names=F, col.names = T, quote=FALSE)
-deaths <- read.table(file = 'pressure.csv', sep = ',')
+pressure <- read.table(file = 'pressure.csv', sep = ',')
 # colVars(numeric_demo)
 
