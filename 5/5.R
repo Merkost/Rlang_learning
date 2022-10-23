@@ -20,3 +20,4 @@ b <- c(5, 8)
 solve(A, b)
 
 arr <- array(1:120, dim = c(2,3,4,5))
+arr
