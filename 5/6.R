@@ -9,8 +9,8 @@ cut_borders <- function(x) {
 
 myfunc <- function(x, k = 10) {
   if (!is.vector(x)) return(NULL)
-  # xmin <- min(x)
-  # xmax <- max(x)
+  xmin <- min(x)
+  xmax <- max(x)
   sequntial <- seq(xmin, xmax, length.out = k)
   chunked <- as.data.frame(sequntial)
   intervals <- as.data.frame(table(cut(x, b = k), dnn = list("Interval")))
