@@ -1,8 +1,8 @@
+my_data <- read.table('3/my_data.txt', sep = ";", header=T)
+mydata2 <- read.table('3/mydata2.txt', sep = ";", head = T)
 
-my_data <- read.table('my_data.txt', sep = ";", header=T)
-mydata2 <- read.table('mydata2.txt', sep = ";", head = T)
-
-demo <- read.table('clipboard', header = T)
+demo <- read.table('3/demo.rd', header = T)
+# demo <- load("3/demo.rd")
 newdemo <- apply(demo, 2, function(x) gsub(",", ".", x))
 sapply(demo, mode)
 
@@ -17,15 +17,15 @@ c(
   var(numeric_demo[,5])
 )
 
-write.table(file = 'demo.rd', newdemo)
+write.table(file = '3/demo.rd', newdemo)
 rm(newdemo)
-newdemo <- read.table(file = 'demo.rd', head = T)
+newdemo <- read.table(file = '3/demo.rd', head = T)
 newdemo
 
 data()
 fdeaths
 trees
-write.table(pressure, "pressure.csv", row.names=F, col.names = T, quote=FALSE)
-pressure <- read.table(file = 'pressure.csv', sep = ',')
+write.table(pressure, "3/pressure.csv", row.names=F, col.names = T, quote=FALSE)
+pressure <- read.table(file = '3/pressure.csv', sep = ',')
 # colVars(numeric_demo)
 
