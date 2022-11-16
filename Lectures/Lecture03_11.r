@@ -14,8 +14,10 @@ boot_np <- function(data, Nboot=5000) {
   return (c(m = mean(data),CI))
 }
 param_CI <- function(data) {
-  n <- length(data) ; m <- mean(data)
-  SE <- sd(data)/sqrt(n) ; E <- qt(.975, df=n-1)*SE
+  n <- length(data)
+  m <- mean(data)
+  SE <- sd(data)/sqrt(n)
+  E <- qt(.975, df=n-1) * SE
   CI <- m + c(-E, E)
   return (c(m , CI))
 }
