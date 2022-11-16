@@ -46,6 +46,7 @@ as.numeric(as.character(a))
 # Пропущенные данные (NA)
 h <- c(8, 10, NA, NA, 8, NA, 8)
 h
+
 # Задача, кто сколько спит из группы
 mean(h)
 mean(h, na.omit(h))
@@ -99,4 +100,3 @@ qqline(salary2, cd = 2) # Квантили теоретические
 
 # 3. Универсальный тест Колмогорова - Смирнова
 ks.test(salary2, "pnorm")
-
