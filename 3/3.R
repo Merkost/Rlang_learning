@@ -14,7 +14,7 @@ c(
   var(numeric_demo[,2]),
   var(numeric_demo[,3]),
   var(numeric_demo[,4]),
-  var(numeric_demo[,5])
+  var(numeric_demo[,5]),
 )
 
 write.table(file = '3/demo.rd', newdemo)

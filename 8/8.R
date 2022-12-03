@@ -52,9 +52,16 @@ ill <- df[!grepl('c', df$Nn),]
 print(sprintf("C.4 healthy and ill: %f %f", mean(healthy$C.4),mean(ill$C.4)))
 print(sprintf("C.6 healthy and ill: %f %f", mean(healthy$C.6),mean(ill$C.6)))
 
-name <- c("C.4", "C.6")
-healthy_people <- c(mean(healthy$C.4),mean(healthy$C.6))
-ill_people <- c(mean(ill$C.4),mean(ill$C.6))
-df.stats <- data.frame(name, healthy_people, ill_people)
-df.stats
+# name <- c("C.4", "C.6")
+# healthy_people <- c(mean(healthy$C.4),mean(healthy$C.6))
+# ill_people <- c(mean(ill$C.4),mean(ill$C.6))
+# df.stats <- data.frame(name, healthy_people, ill_people)
+
+healthy$C.4 - ill$C.4 # Индивидуальные разности
+mean(healthy$C.4 - ill$C.4)
+
+t.test(healthy$C.4, head(ill$C.4, 60), paired = TRUE)
+t.test(healthy$C.6, head(ill$C.6, 60), paired = TRUE)
+t.test(healthy$C.6, ill$C.6)
+
 

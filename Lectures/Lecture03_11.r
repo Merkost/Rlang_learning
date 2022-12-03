@@ -48,7 +48,7 @@ tapply(expend, stature, mean)
 t.test(expend ~ stature)#различаются ли эти средние значения статистически?
 t.test(expend ~ stature, var.equal = TRUE) # без поправки Уэлча
 
-load("A.rd")  # скорость решения задач (сек.) до и после курса
+load("Lectures/A.rd")  # скорость решения задач (сек.) до и после курса
 A
 A[,3] - A[,2] # Индивидуальные разности
 mean(A[,3] - A[,2])
@@ -79,8 +79,7 @@ wilcox.test(A[,3], A[,2], paired = TRUE)
 wilcox.test(A[,3], A[,2], paired = TRUE, conf.int = TRUE)
 
 power.t.test(delta = 3.0, sd = 1.8, sig.level = 0.05, power = 0.8)
-power.t.test(delta = 3.0, sd = 1.8, sig.level = 0.05, power = 0.8,
-             type = "paired")
+power.t.test(delta = 3.0, sd = 1.8, sig.level = 0.05, power = 0.8, type = "paired")
 
 var.test(expend ~ stature)
 
