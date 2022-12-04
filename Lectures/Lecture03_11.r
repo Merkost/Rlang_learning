@@ -55,8 +55,7 @@ mean(A[,3] - A[,2])
 t.test(A[,3], A[,2], paired = TRUE)
 
 
-
-#November 10!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+###### lecture 8 ###########################################################
 
 d.intake <- c(5260, 5470, 5640, 6180, 6390, 6515, 6805,
               7515, 7515, 8230, 8770)#суточное потребление энергии
@@ -81,6 +80,8 @@ wilcox.test(A[,3], A[,2], paired = TRUE, conf.int = TRUE)
 power.t.test(delta = 3.0, sd = 1.8, sig.level = 0.05, power = 0.8)
 power.t.test(delta = 3.0, sd = 1.8, sig.level = 0.05, power = 0.8, type = "paired")
 
+###### lecture 9 ###########################################################
+
 var.test(expend ~ stature)
 
 data(InsectSprays) # данные получены в ходе эксперимента по изучению
@@ -94,3 +95,51 @@ leveneTest(count ~ spray, data = InsectSprays)
 leveneTest(count ~ spray, data = InsectSprays, center = mean)
 bartlett.test(count ~ spray, data = InsectSprays)
 fligner.test(count ~ spray, data = InsectSprays)
+
+#данные о массе кустов томатов (всЄ растение целиком; weight, в кг),
+#которые выращивали при трех разных экспериментальных услови€х
+#(trt) Ц при поливе водой (Water), в среде с добавлением
+#удобрени€ (Nutrient), атакже в среде с добавлением удобрени€
+#и гербицида 2,4-D (Nutrient+24D) //  (Maindonald, Braun, 2010)
+tomato <-
+  data.frame(weight=
+               c(1.5, 1.9, 1.3, 1.5, 2.4, 1.5, # water
+                 1.5, 1.2, 1.2, 2.1, 2.9, 1.6, # nutrient
+                 1.9, 1.6, 0.8, 1.15, 0.9, 1.6), # nutrient+24D
+             trt = rep(c("Water", "Nutrient", "Nutrient+24D"),
+                       c(6, 6, 6)))
+attach(tomato)
+(Means <- tapply(weight, trt, mean))
+boxplot(weight ~ trt, xlab = "Вес, кг", ylab = "Условие", col=2:4)
+
+(X<-mean(Means))
+(SSB<-sum((Means-X)^2)*6)
+(Vars<- tapply(weight, trt, var)*5)
+(SSW<-sum(Vars))
+(dfB<-3-1)
+(dfW<-18-3)
+SSB*15/(SSW*2)
+qf(0.95, 2, 15) # F-распределение при этих степенях свободы и при n = 0.05.
+SSB/SSW # коэффициента детерминации R^2, показывает, какую долю общей
+#изменчивости объ€сн€ет данный фактор
+
+summary(aov(weight ~ trt, data = tomato))
+
+detach(tomato)
+
+# задача о 3 группах людей с различным образом жизни (по 26 человек)
+x.g<-c(11.5, 10.1, 9.1) # средние значения признака по группам
+x.s<-c(1.3,2.1,2.4) # выборочные стандартные отклонения по группам
+plot(x.g)
+
+(X<-mean(x.g))
+(SSB<-sum((x.g-X)^2)*26)
+(SSW<-sum(x.s^2)*25)
+(dfB<-3-1)
+(dfW<-78-3)
+SSB*75/(SSW*2)
+qf(0.95, 2, 75) # F-распределение при этих степенях свободы и при n = 0.05.
+qf(0.99, 2, 75)
+pf(9.56, 2, 75, lower=FALSE)
+SSB/SSW # коэффициента детерминации R^2
+
