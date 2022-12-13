@@ -51,7 +51,7 @@ jknife <- function(x, f, ci = 0.95) {
   jack.est <- mean(pseudos)
   jack.se <- sqrt(var(pseudos) / n)
   alpha <- 1 - ci
-  CI <- qt(alpha / 2, n - 1, lower.tail = FALSE) * jack.se
+  CI <- qt(alpha / 2, n - 1, lower.tail = FALSE) * jack.se # Распределение Стьюдента
   jack.ci <- c(jack.est - CI, jack.est + CI)
   return(list(est = jack.est, se = jack.se, ci = jack.ci, pseudos = pseudos, partials = partials))
 }
