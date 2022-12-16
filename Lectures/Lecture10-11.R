@@ -27,9 +27,8 @@ M1 <- aov(weightgain ~ source + type + source:type,
           data = weightgain)
 summary(M1)
 
-setwd("C://YandexDisk//в работе//ДВФУ//ИМиКТ//практика")
-file.show("class_A.txt")
-cl.A<-read.table("class_A.txt", sep=" ")
+file.show("Lectures/class_A.txt")
+cl.A<-read.table("Lectures/class_A.txt", sep=" ")
 summary(cl.A)
 colnames(cl.A)<-c("имя","вес","рост","пол")
 
