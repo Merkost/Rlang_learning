@@ -116,6 +116,6 @@ cor.test.p <- function(x) {
 
 # Выбираем только числовые столбцы в таблице
 cor.test.p(group[2:4])
-corr.test(group)
+# corr.test(group)
 
 
