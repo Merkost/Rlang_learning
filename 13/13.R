@@ -32,7 +32,10 @@ mosaicplot(teeth, main = "Mosaic plot", color = TRUE)
 # проверим статистически
 chisq.test(teeth)$expected
 chisq.test(teeth)
-# p-value < 2.2e-16
+# 	Pearson's Chi-squared test
+#
+# data:  teeth
+# X-squared = 99.865, df = 9, p-value < 2.2e-16
 # Отличия статистически значимы.
 # Данные позволяют считать полоскание хлоргексидином эффективнее.
 
@@ -47,13 +50,35 @@ chisq.test(teeth)
 
 var(teeth$`Хлоргексидин`)
 var(teeth$`Хлорид аммония`)
-# Дисперсии разные, поэтому у теста указываем var.equal = FALSE
-t.test(teeth$`Хлорид аммония`, teeth$`Хлоргексидин`, var.equal = FALSE)
-# p-value = 0.0004302, что меньше значения 0.05.
-# Отвергаем нулевую гепотезу и принимаем альтернативную.
+t.test(teeth$`Хлорид аммония`, teeth$`Хлоргексидин`, paired=TRUE)
+# 	Paired t-test
+#
+# data:  teeth$`Хлорид аммония` and teeth$Хлоргексидин
+# t = 4.69, df = 9, p-value = 0.001136
+# alternative hypothesis: true mean difference is not equal to 0
+# 95 percent confidence interval:
+#  26.14224 74.85776
+# sample estimates:
+# mean difference
+#            50.5
+
+# p-value = 0.001136 - отвергаем нулевую гепотезу и принимаем альтернативную.
 # Делаем вывод, что средние показатели двух групп значимо отличаются.
-# mean of x mean of y
-#      66.8      16.3
+
+# Cтатистическая мощность парного t-критерия Стьдента
+pwr.t.test(n = 20, d = 1, type  = "paired")
+#     Paired t test power calculation
+#
+#               n = 20
+#               d = 1
+#       sig.level = 0.05
+#           power = 0.9885913
+#     alternative = two.sided
+
+# Рассчитанная мощность (0.98 ~ 98%) гораздо выше условно принятого
+# порога в 80%. Таким образом, число результатов опыта
+# достаточно для того, чтобы сделать вывод -
+# Полоскание с хлоргексидином более эффективно.
 
 
 # 13.4  4.	Оцените мощность критерия, которая будет достигнута
