@@ -1,0 +1,15 @@
+with RECURSIVE rec_table as (
+	select TAIL, ROWI as queue
+	from (select *
+	from EVENTS e, KWORDS k
+	where e.ROWI = k.EVENT and k.WORD in (1, 2, 3)
+	order by HEAD)
+
+	union ALL
+
+	select tempt.ROWI, (rt.queue || " > " || tempt.ROWI) as queue
+	from (select *
+	from EVENTS e, KWORDS k
+	where e.ROWI = k.EVENT and k.WORD in (1, 2, 3)
+	order by HEAD) tempt, rec_table rt where tempt.ROWI = queue and tempt.head >= rt.TAIL
+) select queue from rec_table ORDER BY queue
